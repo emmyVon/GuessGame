@@ -6,12 +6,15 @@ const layout = document.querySelector('.layout')
  const startGame = ()=>{
      layout.innerHTML = `
             <header>
-                <h2>8 GRADER GUESSER</h2>
+                <h1>8 GRADER GUESSER</h1>
                 <div class="record">
-                    <p>Welcome Champ!</p>
+                    <div>
+                        <h2>Welcome Champ!</h2>
+                        <h3>Chance: <span class='chance emp'>3</span></h3>
+                    </div>
                     <div class='score-board'>
-                    <h3>Time left: <span class="timer">3</span></h3>
-                    <p>Score: <span class='score'>0</span></p>
+                    <h3>Time left: <span class="timer emp">3</span></h3>
+                    <h3>Score: <span class='score emp'>0</span></h3>
                     </div>
                 </div>
             </header>
@@ -45,6 +48,7 @@ const displayf = document.querySelector('.feedback')
 const startbtn = document.querySelector('button')
 const timer = document.querySelector('.timer')
 const scoreDom = document.querySelector('.score')
+const ChanceDom = document.querySelector('.chance')
 
 
 function getRandomnum(){
@@ -53,8 +57,7 @@ function getRandomnum(){
      return Randomnum
 }
 
-
-let start = false
+let Chance = 3
  let stoptime = 60
 let number = getRandomnum()
  let Score = 0
@@ -64,6 +67,7 @@ let number = getRandomnum()
  let decreasesec;
 timer.textContent = stoptime
 scoreDom.textContent = Score
+ChanceDom.textContent = Chance
 
 const countdown = ()=>{
     start = true
@@ -73,13 +77,13 @@ const countdown = ()=>{
     if(stoptime <= 30){
         timer.style.color = 'red'
     }
-    if(stoptime<=0){
+    if(stoptime<=0 || Chance === 0){
         clearInterval(decreasesec)
         start = false
         layout.classList.remove('layout-main')
         layout.innerHTML = `
     
-            <p class='final-p'> Time up, Game Over. My Lucky number was <span class='guessnum success'>${number}</span></p>
+            <p class='final-p'> Game Over. My Lucky number was <span class='guessnum success'>${number}</span></p>
             <p class='final-p'>Your Score is <span class=' ${Score<10? 'final-score danger':'final-score success'}'> ${Score}</span></p>
             <button class='try-again'>Try Again</button>
        
@@ -105,27 +109,36 @@ startbtn.addEventListener('click',()=>{
 guessinput.addEventListener('change',(e)=>{
     const guessnum = +e.target.value;
    
-    start = true
-    let tries = 0
+    Chance--
+    ChanceDom.textContent = Chance
    
     if(guessnum === number){
         displayf.textContent = 'guessed right'
         displayf.style.color = 'green'
         Score += 5
         scoreDom.textContent = Score
+        Chance = 3
+        ChanceDom.textContent = Chance
          number = getRandomnum()
         console.log(number)
-         tries ++
+         
 
+    }else if(guessnum < number){
+        displayf.textContent = "Try again, guess too low"
+        displayf.style.color = 'yellow'
+    }
+    else if(guessnum > number){
+        displayf.textContent = "Try again, guess too high"
+        displayf.style.color = 'yellow'
     }
     else if(typeof(guessnum) == NaN || guessnum > 100 || guessnum < 1){
         displayf.textContent = 'Enter a valid number between 1 - 100'
         displayf.style.color = "red"
     }
-    else{
-        displayf.textContent = 'Try again, you might be lucky!'
-        displayf.style.color = 'yellow'
-    }
+    // else{
+    //     displayf.textContent = 'Try again, you might be lucky!'
+    //     displayf.style.color = 'yellow'
+    // }
 
     e.target.value = ''
 })

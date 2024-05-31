@@ -29,6 +29,13 @@ body{
     display: flex;
     justify-content: space-between;
 }
+.record div:nth-child(1){
+    margin-bottom: 1.3rem;
+}
+ .emp{
+    font-weight: 500;
+    font-size: 1.3rem;
+}
 .score-board{
     display: flex;
     gap: 3rem;
@@ -40,7 +47,7 @@ header{
     /* text-align: center; */
     /* justify-self: start; */
 }
-header h2{
+header h1{
     margin-bottom: 1.4rem;
     color: goldenrod;
 }
@@ -101,5 +108,9 @@ button{
     }
     .record{
         flex-direction: column;
+    }
+    .record div:nth-child(1){
+        display: flex;
+        gap: 2rem;
     }
 }
