@@ -1,0 +1,105 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+.layout{
+   border-radius: 10px 5px;
+   background-color: rgb(14, 13, 13);
+   padding: 3rem;
+   color: white;
+   height: 40vh;
+   width: 50vw;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   gap: 2rem;
+  
+
+}
+.layout-main{
+    justify-content: space-between;
+}
+.record{
+    display: flex;
+    justify-content: space-between;
+}
+.score-board{
+    display: flex;
+    gap: 3rem;
+}
+
+
+header{
+    margin-bottom: 1rem;
+    /* text-align: center; */
+    /* justify-self: start; */
+}
+header h2{
+    margin-bottom: 1.4rem;
+    color: goldenrod;
+}
+main{
+    justify-self: center;
+    width: 80%;
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+    align-items: center;
+}
+main > *{
+    margin-bottom: 1.45rem;
+
+}
+input{
+    border-radius: 6px;
+    padding: 1rem 1.6rem;
+    /* width: 100%; */
+   
+}
+/* .input{
+    align-self: center;
+} */
+
+button{
+    background-color: blue;
+    font-weight: 400;
+    font-size: 1.2rem;
+    padding: 4px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    color: white;
+}
+.final-p{
+    display: flex;
+    align-items: center;
+}
+
+.final-score,.guessnum{
+    font-weight: 500;
+    text-shadow: 2px 2px black;
+    margin-left: 2rem;
+    font-size: 2.5rem;
+}
+
+.danger {
+    color: red;
+}
+.success{
+    color: green;
+}
+
+@media(max-width:760px){
+    .layout{
+        height: 80vh;
+    }
+    .record{
+        flex-direction: column;
+    }
+}
